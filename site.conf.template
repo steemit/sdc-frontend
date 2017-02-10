@@ -1,6 +1,6 @@
 server {
 
-    listen 8081;
+    listen 8081 proxy_protocol;
     server_name $SERVER_NAME;
 
     # rewrite http to https (ALB does the https termination)
