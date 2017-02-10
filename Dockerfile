@@ -16,4 +16,6 @@ ADD site.conf.template /etc/nginx/site.conf.template
 
 ADD nginx.conf.template /etc/nginx/nginx.conf.template
 
+EXPOSE 8081
+
 CMD /usr/bin/startservices.sh
