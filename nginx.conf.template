@@ -1,3 +1,4 @@
+user www-data;
 worker_processes  64;
 worker_rlimit_nofile 10000;
 
@@ -30,6 +31,8 @@ http {
     gzip  on;
 
     include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+
 }
 
 daemon off;
