@@ -34,7 +34,7 @@ server {
       return 404;
     }
 
-    location /wspa {
+    location ~ /wspa? {
       access_log off;
       proxy_pass https://$WSPA_SERVER;
       proxy_set_header X-Real-IP $remote_addr;
