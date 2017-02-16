@@ -4,7 +4,7 @@ server {
     server_name $SERVER_NAME;
 
     # proxy traffic to /health to the upstream without https redirect for the ELB
-    location  /health {
+    location /health {
       access_log off;
       proxy_set_header  Host $host;
       proxy_set_header  X-Real-IP $remote_addr;
