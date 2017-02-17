@@ -15,6 +15,17 @@ server {
       proxy_pass  http://steemit-sdc:8080/;
     }
 
+    location /.well-known/healthcheck.json {
+      access_log off;
+      proxy_set_header  Host $host;
+      proxy_set_header  X-Real-IP $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header  X-Forwarded-Proto $scheme;
+      proxy_http_version 1.1;
+      proxy_redirect off;
+      proxy_pass  http://steemit-sdc:8080/;
+    }
+
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
