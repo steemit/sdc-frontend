@@ -3,18 +3,7 @@ server {
     listen 8081;
     server_name $SERVER_NAME;
 
-    # proxy traffic to /health to the upstream without https redirect for the ELB
-    location /health {
-      access_log off;
-      proxy_set_header  Host $host;
-      proxy_set_header  X-Real-IP $remote_addr;
-      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header  X-Forwarded-Proto $scheme;
-      proxy_http_version 1.1;
-      proxy_redirect off;
-      proxy_pass  http://steemit-sdc:8080/;
-    }
-
+    # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
     location /.well-known/healthcheck.json {
       access_log off;
       proxy_set_header  Host $host;
