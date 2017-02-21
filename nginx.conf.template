@@ -30,7 +30,7 @@ http {
                     '|"$http_referer"| "$http_user_agent"';
 
     access_log /dev/stdout main;
-    error_log  stderr;
+    error_log  /dev/stdout info;
 
     log_not_found off;
 
