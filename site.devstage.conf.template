@@ -29,6 +29,7 @@ server {
       <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"></head>';
       sub_filter_types *;
       sub_filter_once on;
+      proxy_set_header Accept-Encoding "";
 
       proxy_set_header  Host $host;
       proxy_set_header  X-Real-IP $remote_addr;
