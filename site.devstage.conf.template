@@ -1,33 +1,7 @@
+
 server {
+
     listen 8081;
-    server_name $SERVER_NAME;
-
-    # rewrite http to https (ALB does the https termination)
-    if ($http_x_forwarded_proto != 'https') {
-      return 301 https://$server_name$request_uri;
-    }
-
-    # sub_filter to ignore robots on dev/stage
-
-    location / {
-      sub_filter '</head>'
-      '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-      <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"></head>';
-      sub_filter_types text/css text/plain text/html;
-      sub_filter_once on;
-      proxy_set_header Accept-Encoding "";
-      proxy_set_header  Host $host;
-      proxy_set_header  X-Real-IP $remote_addr;
-      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header  X-Forwarded-Proto $scheme;
-      proxy_http_version 1.1;
-      proxy_pass http://localhost:8082;
-    }
-}
-
-server {
-
-    listen 8082;
     server_name $SERVER_NAME;
 
     # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
@@ -51,8 +25,13 @@ server {
         return 301 https://$server_name$request_uri;
       }
 
-      # for dev and stage, gunzip response so sub_filter can filter it
-      gunzip on;
+      # for dev and stage sub_filter meta tags for robots
+      sub_filter '</head>'
+      '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+      <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"></head>';
+      sub_filter_types text/css text/plain text/html;
+      sub_filter_once on;
+      proxy_set_header Accept-Encoding "";
 
       proxy_set_header  Host $host;
       proxy_set_header  X-Real-IP $remote_addr;
@@ -62,7 +41,7 @@ server {
       add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
       add_header 'Content-Security-Policy' 'upgrade-insecure-requests';
 
-      proxy_pass  http://steemit-sdc:8080;
+      proxy_pass  http://localhost:8082;
 
     }
 
@@ -87,6 +66,17 @@ server {
       #proxy_set_header Connection "upgrade";
       return 301 https://$WSPA_SERVER;
     }
+}
+
+# gunzip response so it can be filtered for dev/stage (no robots/googlebot)
+server {
+  listen 8082;
+  server_name $SERVER_NAME;
+  gunzip on;
+  location / {
+    proxy_pass http://steemit-sdc:8080;
+    proxy_set_header Accept-Encoding gzip;
+  }
 }
 
 server {
