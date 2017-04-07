@@ -24,6 +24,7 @@ server {
         return 301 https://$server_name$request_uri;
       }
 
+      gunzip on;
       sub_filter '</head>'
       '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
       <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"></head>';
