@@ -2,6 +2,11 @@ server {
     listen 8081;
     server_name $SERVER_NAME;
 
+    # rewrite http to https (ALB does the https termination)
+    if ($http_x_forwarded_proto != 'https') {
+      return 301 https://$server_name$request_uri;
+    }
+
     # sub_filter to ignore robots on dev/stage
 
     location / {
