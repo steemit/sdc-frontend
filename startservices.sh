@@ -5,7 +5,7 @@ if [[ -z "$SERVER_NAME" ]]; then export SERVER_NAME=steemitdev.com; fi
 if [[ -z "$WSPA_SERVER" ]]; then export WSPA_SERVER=steemd.steemitdev.com; fi
 
 # generate nginx config on the fly and feed in any appropriate environment variables
-if [[ ${NODE_ENV} == "dev" ]] || [[ ${NODE_ENV} == "staging" ]]; then
+if [[ "$NO_ROBOTS" ]]; then
   /bin/bash -c "envsubst '\$SERVER_NAME \$WSPA_SERVER' < /etc/nginx/site.devstage.conf.template > /etc/nginx/sites-enabled/default"
 else
   /bin/bash -c "envsubst '\$SERVER_NAME \$WSPA_SERVER' < /etc/nginx/site.conf.template > /etc/nginx/sites-enabled/default"
