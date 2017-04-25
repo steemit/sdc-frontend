@@ -37,7 +37,7 @@ http {
     sendfile        on;
     #tcp_nopush     on;
 
-    keepalive_timeout  75;
+    keepalive_timeout  0;
 
     gzip  on;
 
