@@ -1,11 +1,11 @@
 user www-data;
-worker_processes  64;
-worker_rlimit_nofile 10000;
+worker_processes  4;
+worker_rlimit_nofile 40000;
 
 pid        /var/run/nginx.pid;
 
 events {
-    worker_connections  10000;
+    worker_connections  20000;
 }
 
 
@@ -35,13 +35,10 @@ http {
     log_not_found off;
 
     sendfile        on;
-    #tcp_nopush     on;
 
     keepalive_timeout  0;
 
     gzip  on;
-
-    proxy_ignore_client_abort on;
 
     include /etc/nginx/conf.d/*.conf;
     include /etc/nginx/sites-enabled/*;
