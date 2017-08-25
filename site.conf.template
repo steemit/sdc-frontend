@@ -40,17 +40,17 @@ server {
 
     }
 
-    location /ws {
+    location = /ws {
       access_log off;
       return 404;
     }
 
-    location ~ /wstmp3/? {
+    location ~ ^/wstmp3/? {
       access_log off;
       return 404;
     }
 
-    location ~ /wspa? {
+    location = /wspa {
       return 301 https://$WSPA_SERVER;
     }
 }
