@@ -39,11 +39,6 @@ server {
       proxy_pass  http://steemit-sdc:8080;
 
     }
-
-    location = /ws {
-      access_log off;
-      return 404;
-    }
 }
 
 server {
