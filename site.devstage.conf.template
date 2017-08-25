@@ -53,15 +53,6 @@ server {
       access_log off;
       return 404;
     }
-
-    location ~ ^/wstmp3/? {
-      access_log off;
-      return 404;
-    }
-
-    location = /wspa {
-      return 301 https://$WSPA_SERVER;
-    }
 }
 
 # gunzip response so it can be filtered for dev/stage (no robots/googlebot)
