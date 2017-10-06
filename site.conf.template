@@ -19,7 +19,7 @@ server {
       proxy_pass  http://steemit-sdc:8080/;
     }
 
-    location /rippedoff/ {
+    location  /rippedoff/ {
       # ddos url
       return 404;
     }
