@@ -3,7 +3,7 @@ FROM phusion/baseimage:0.9.19
 RUN \
     apt-get update && \
     apt-get install -y \
-        nginx \
+        nginx-full \
         gettext \
     && \
     apt-get clean
