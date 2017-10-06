@@ -1,3 +1,6 @@
+limit_req_zone $http_x_forwarded_for zone=sdc:32m rate=30r/m;
+proxy_cache_path /var/cache/nginx levels=1:2 inactive=6h keys_zone=sdc_cache:100m;
+
 server {
 
     listen 8081;
@@ -14,12 +17,13 @@ server {
       proxy_read_timeout 90;
       proxy_http_version 1.1;
       proxy_redirect off;
-      proxy_pass  http://steemit-sdc:8080/;
+      proxy_pass  http://steemit-sdc:8080/.well_known/healthcheck.json;
     }
 
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
+      limit_req zone=sdc burst=60;
 
       # rewrite http to https (ALB does the https termination)
       if ($http_x_forwarded_proto != 'https') {
@@ -46,6 +50,8 @@ server {
 
       proxy_pass  http://127.0.0.1:8082;
 
+      proxy_cache sdc_cache;
+      proxy_cache_valid 2m;
     }
 }
 
