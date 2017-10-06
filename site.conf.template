@@ -19,7 +19,7 @@ server {
       proxy_pass  http://steemit-sdc:8080/;
     }
 
-    location /rippedoff/@lrd/aurora-mine-new-cloud-mining-website {
+    location = /rippedoff/@lrd/aurora-mine-new-cloud-mining-website {
       return 404;
     }
     
