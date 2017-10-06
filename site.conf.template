@@ -111,6 +111,7 @@ server {
       add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
       add_header 'Content-Security-Policy' 'upgrade-insecure-requests';
 
+      proxy_cache sdc_cache;
       proxy_cache_valid 2m;
 
       proxy_pass  http://steemit-sdc:8080;
