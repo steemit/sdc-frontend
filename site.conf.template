@@ -1,4 +1,4 @@
-limit_req_zone $binary_remote_addr zone=sdc:32m rate=30r/m;
+limit_req_zone $binary_remote_addr zone=sdc:32m rate=120r/m;
 
 server {
 
