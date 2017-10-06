@@ -1,4 +1,4 @@
-limit_req_zone $http_x_forwarded_for zone=sdc:32m rate=120r/m;
+limit_req_zone $http_x_forwarded_for zone=sdc:32m rate=30r/m;
 
 server {
 
@@ -27,7 +27,7 @@ server {
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
-      limit_req zone=sdc burst=50;
+      limit_req zone=sdc burst=60;
 
       # rewrite http to https (ALB does the https termination)
       if ($http_x_forwarded_proto != 'https') {
