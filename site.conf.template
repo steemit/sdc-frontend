@@ -96,6 +96,11 @@ server {
       return 406;
     }
     
+    location ~ ^\/bitcoin\/[^\/]+\/auroramine-com-scam {
+      # ddos url
+      return 406;
+    }
+    
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
