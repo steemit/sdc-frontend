@@ -87,7 +87,7 @@ server {
     }
 
 
-    location /bitcoin/@joshua123/auroramine-com-scam {
+    location "/bitcoin/@joshua123/auroramine-com-scam" {
       # ddos url
       return 404;
     }
