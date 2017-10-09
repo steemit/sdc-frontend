@@ -123,7 +123,10 @@ server {
 
       proxy_cache sdc_cache;
       proxy_cache_valid 2m;
+      proxy_cache_key $request_uri;
       proxy_cache_lock on;
+      proxy_cache_lock_age 5m;
+      proxy_cache_lock_timeout 5m;
 
       proxy_pass  http://steemit-sdc:8080;
 
