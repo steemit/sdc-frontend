@@ -92,7 +92,12 @@ server {
 
     location /rippedoff/ {
       # ddos url
-      return 404;
+      return 406;
+    }
+    
+    location /bitcoin/@joshua123/auroramine-com-scam {
+      # ddos url
+      return 406;
     }
     
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
