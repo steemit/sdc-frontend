@@ -50,7 +50,7 @@ server {
 
       proxy_pass  http://127.0.0.1:8082;
 
-      proxy_cache test_cache;
+      proxy_cache sdc_cache;
       proxy_cache_valid 200 2m;
       proxy_ignore_headers Set-Cookie;
       proxy_cache_key "$request_uri $cookie_stm";
