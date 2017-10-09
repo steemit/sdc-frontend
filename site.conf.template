@@ -75,6 +75,7 @@ server {
     deny 37.210.134.209;
     deny 37.210.136.74;
     deny 41.46.143.101;
+    deny 154.121.251.88;
 
     # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
     location /.well-known/healthcheck.json {
