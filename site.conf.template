@@ -86,12 +86,6 @@ server {
       proxy_pass  http://steemit-sdc:8080/.well-known/healthcheck.json;
     }
 
-
-    location "/bitcoin/@joshua123/auroramine-com-scam" {
-      # ddos url
-      return 404;
-    }
-
     location /rippedoff/ {
       # ddos url
       return 404;
