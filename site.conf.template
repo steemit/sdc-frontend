@@ -76,6 +76,7 @@ server {
     deny 37.210.136.74;
     deny 41.46.143.101;
     deny 154.121.251.88;
+    deny 186.15.223.149;
 
     # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
     location /.well-known/healthcheck.json {
@@ -91,20 +92,10 @@ server {
       proxy_pass  http://steemit-sdc:8080/.well-known/healthcheck.json;
     }
 
-    location /rippedoff/ {
-      # ddos url
-      return 406;
-    }
-    
-    location ~ ^\/bitcoin\/[^\/]+\/auroramine-com-scam {
-      # ddos url
-      return 406;
-    }
-    
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
-      limit_req zone=sdc burst=60;
+      limit_req zone=sdc burst=30;
 
       # rewrite http to https (ALB does the https termination)
       if ($http_x_forwarded_proto != 'https') {
