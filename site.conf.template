@@ -654,7 +654,7 @@ server {
       proxy_pass  http://steemit-sdc:8080/.well-known/healthcheck.json;
     }
 
-    location /rippedoff/ {
+    location  /rippedoff/ {
       # ddos url
       return 406;
     }
