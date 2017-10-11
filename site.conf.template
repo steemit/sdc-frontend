@@ -101,6 +101,11 @@ server {
       return 406;
     }
     
+    location ~ ^\/scam\/[^\/]+\/is-auroramine-scam-or-legit {
+      # ddos url
+      return 406;
+    }
+    
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
