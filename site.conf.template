@@ -686,6 +686,7 @@ server {
       proxy_ignore_client_abort on;
       proxy_read_timeout 90;
       proxy_http_version 1.1;
+      proxy_hide_header Strict-Transport-Security;
       add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
       add_header 'Content-Security-Policy' 'upgrade-insecure-requests';
 
