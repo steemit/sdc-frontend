@@ -671,36 +671,6 @@ server {
 
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
-    # new url scheme redirects
-
-    rewrite ^\/about.html$ /s/about redirect;
-    rewrite ^\/about.html$ /s/about redirect;
-    rewrite ^\/welcome$ /s/welcome redirect;
-    rewrite ^\/faq.html$ /s/faq redirect;
-    rewrite ^\/about.html$ /s/about redirect;
-    rewrite ^\/login.html$ /c/login redirect;
-    rewrite ^\/privacy.html$ /s/privacy redirect;
-    rewrite ^\/support.html$ /s/support redirect;
-    rewrite ^\/tags\/?$ /c/tags redirect;
-    rewrite ^\/tos.html$ /s/tos redirect;
-    rewrite ^\/change_password$ /c/change-password redirect;
-    rewrite ^\/create_account$ /c/create-account redirect;
-    rewrite ^\/approval$ /c/approval redirect;
-    rewrite ^\/pick_account$ /c/pick-account redirect;
-    rewrite ^\/recover_account_step_1$ /c/recover-account-step-1 redirect;
-    rewrite ^\/recover_account_step_2$ /c/recover-account-step-2 redirect;
-    rewrite ^\/market$ /c/market redirect;
-    rewrite ^\/~witnesses$ /c/witnesses redirect;
-    rewrite ^\/submit.html$ /c/submit redirect;
-    rewrite ^\/@([\w.\d-]+)\/?$ /$1 redirect;
-    rewrite ^\/@([\w.\d-]+)\.json$ /$1.json redirect;
-    rewrite ^\/@([\w.\d-]+)\/([\w\d-]+)\/?$ /$1/$2 redirect;
-    rewrite ^\/([\w\d-/]+)\/@([\w.\d-]+)\/([\w\d-]+)\/?$ /$2/$3 redirect;
-    rewrite ^\/([\w\d-/]+)\/@([\w.\d-]+)\/([\w\d-]+)\.json$ /$2/$3.json redirect;
-    rewrite ^\/(hot|votes|responses|trending|trending30|promoted|cashout|payout|payout_comments|created|active)\/?$ /t/all/$1 redirect;
-    rewrite ^\/(hot|votes|responses|trending|trending30|promoted|cashout|payout|payout_comments|created|active)\/([\w\d-]+)\/?$ /t/$2/$1 redirect;
-
-
     location / {
       limit_req zone=sdc burst=60;
 
