@@ -654,21 +654,6 @@ server {
       proxy_pass  http://steemit-sdc:8080/.well-known/healthcheck.json;
     }
 
-    location /rippedoff/ {
-      # ddos url
-      return 406;
-    }
-
-    location ~ ^\/bitcoin\/[^\/]+\/auroramine-com-scam {
-      # ddos url
-      return 406;
-    }
-
-    location ~ ^\/scam\/[^\/]+\/is-auroramine-scam-or-legit {
-      # ddos url
-      return 406;
-    }
-    
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
