@@ -662,7 +662,7 @@ server {
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
     location / {
-      limit_req zone=sdc burst=5;
+      limit_req zone=sdc burst=50;
 
       # rewrite http to https (ALB does the https termination)
       if ($http_x_forwarded_proto != 'https') {
