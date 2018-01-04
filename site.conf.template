@@ -642,7 +642,7 @@ server {
 
     # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
     location /.well-known/healthcheck.json {
-      access_log off;
+      limit_req zone=sdc burst=60;
       proxy_set_header  Host $host;
       proxy_set_header  X-Real-IP $remote_addr;
       proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
