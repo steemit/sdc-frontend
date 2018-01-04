@@ -640,6 +640,11 @@ server {
     deny 157.50.8.160;
     deny 91.223.16.171;
 
+    # ignore csp violations
+    location /api/v1/csp_violation {
+        return 403;
+    }
+
     # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
     location /.well-known/healthcheck.json {
       limit_req zone=sdc;
