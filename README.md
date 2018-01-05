@@ -6,5 +6,4 @@ Required environment variables:
 
 ```
 $SERVER_NAME     # ex. steemit.com
-$WSPA_SERVER     # ex. steemd.steemit.com
 ```
