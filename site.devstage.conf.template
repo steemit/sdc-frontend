@@ -86,6 +86,9 @@ server {
   rewrite ^\/pick_account$ /c/pick-account redirect;
   rewrite ^\/recover_account_step_1$ /c/recover-account-step-1 redirect;
   rewrite ^\/recover_account_step_2$ /c/recover-account-step-2 redirect;
+  rewrite ^\/account_recovery_confirmation/([\w.\d]+) /c/account_recovery_confirmation/$1 redirect;
+  rewrite ^\/confirm_email/([\w.\d]+) /c/confirm-email/$1 redirect;
+  rewrite ^\/start/([\w.\d]+) /c/start/$1 redirect;
   rewrite ^\/market$ /c/market redirect;
   rewrite ^\/~witnesses$ /c/witnesses redirect;
   rewrite ^\/submit.html$ /c/submit redirect;
