@@ -42,6 +42,11 @@ server {
 
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
+    location /cryptocurrency/@bitcoinminer25/youhash-cloud-mining-scam-or-legit {
+        access_log off;
+        return 403;
+    }
+    
     location / {
       limit_req zone=sdc burst=50;
 
