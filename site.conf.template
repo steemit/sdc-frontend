@@ -639,6 +639,11 @@ server {
     deny 162.243.140.86;
     deny 157.50.8.160;
     deny 91.223.16.171;
+    deny 89.35.44.248;
+    deny 122.8.125.184;
+    deny 92.114.178.198;
+    deny 179.127.252.154;
+    deny 192.119.168.147;
 
     # ignore csp violations
     location /api/v1/csp_violation {
