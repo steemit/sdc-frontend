@@ -44,7 +44,7 @@ server {
 
     location /cryptocurrency/@bitcoinminer25/youhash-cloud-mining-scam-or-legit {
         access_log off;
-        return 404;
+        return 403;
     }
     
     location / {
