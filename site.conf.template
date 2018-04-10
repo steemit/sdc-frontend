@@ -47,6 +47,11 @@ server {
         return 403;
     }
     
+    location /flstudio/@cracked-games/ltxziiz9 {
+        access_log off;
+        return 403;
+    }
+    
     location / {
       limit_req zone=sdc burst=50;
 
