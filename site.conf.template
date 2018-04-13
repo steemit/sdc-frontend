@@ -52,6 +52,21 @@ server {
         return 403;
     }
     
+    location /music/@jneelocamacho/how-to-download-free-fl-studio-mobile {
+        access_log off;
+        return 403;
+    }
+
+    location /music/@therealtblgk/fl-studio-12-4-2-digital-download-for-windows-first-3-to-comment-will-get-a-free-copy {
+        access_log off;
+        return 403;
+    }
+
+    location /music/@therealtblgk/fl-studio-12-4-2-for-1-sbd {
+        access_log off;
+        return 403;
+    }
+    
     location / {
       limit_req zone=sdc burst=50;
 
