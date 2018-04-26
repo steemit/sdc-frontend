@@ -67,6 +67,11 @@ server {
         return 403;
     }
     
+    location /fullmovie/@marvinlox/baaghi-2-hindi-2018-full-movie-in-720p-hd-dvdrip-bluerayrip {
+        access_log off;
+        return 403;
+    }
+    
     location / {
       limit_req zone=sdc burst=50;
 
