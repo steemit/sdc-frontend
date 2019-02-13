@@ -12,7 +12,7 @@ ADD startservices.sh /usr/bin/startservices.sh
 
 RUN chmod +x /usr/bin/startservices.sh
 
-ADD site* /etc/nginx
+ADD site* /etc/nginx/
 
 ADD nginx.conf.template /etc/nginx/nginx.conf.template
 
