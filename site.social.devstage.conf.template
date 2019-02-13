@@ -1,0 +1,96 @@
+limit_req_zone $http_x_forwarded_for zone=sdc:32m rate=100r/m;
+proxy_cache_path /var/cache/nginx levels=1:2 inactive=6h keys_zone=sdc_cache:100m;
+
+server {
+
+    listen 8081;
+    server_name $SERVER_NAME;
+
+    # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
+    location /.well-known/healthcheck.json {
+      limit_req zone=sdc;
+      proxy_set_header  Host $host;
+      proxy_set_header  X-Real-IP $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header  X-Forwarded-Proto $scheme;
+      proxy_ignore_client_abort on;
+      proxy_read_timeout 90;
+      proxy_http_version 1.1;
+      proxy_redirect off;
+      proxy_pass  http://steemit-sdc:8080/.well-known/healthcheck.json;
+    }
+
+    add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
+
+    # redirect certain routes to the wallet app
+
+    location ~* ^/@[0-9a-z]+/transfers {
+        return 301 https://$WALLET_URL$request_uri;
+    }
+
+    location /market {
+        return 301 https://$WALLET_URL$request_uri;
+    }
+
+    location /~witnesses {
+        return 301 https://$WALLET_URL$request_uri;
+    }
+
+    location / {
+      limit_req zone=sdc burst=50;
+
+      # rewrite http to https (ALB does the https termination)
+      if ($http_x_forwarded_proto != 'https') {
+        return 301 https://$server_name$request_uri;
+      }
+
+      # for dev and stage sub_filter meta tags for robots
+      sub_filter '</head>'
+      '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+      <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"></head>';
+      sub_filter_types text/css text/plain text/html;
+      sub_filter_once on;
+      proxy_set_header Accept-Encoding "";
+
+      proxy_set_header  Host $host;
+      proxy_set_header  X-Real-IP $remote_addr;
+      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header  X-Forwarded-Proto $scheme;
+      proxy_ignore_client_abort on;
+      proxy_read_timeout 90;
+      proxy_http_version 1.1;
+      proxy_hide_header Strict-Transport-Security;
+      add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
+      add_header 'Content-Security-Policy' 'upgrade-insecure-requests';
+
+      proxy_pass  http://127.0.0.1:8082;
+
+      proxy_cache sdc_cache;
+      proxy_cache_valid 200 2m;
+      proxy_cache_key "$request_uri";
+      proxy_cache_lock on;
+      proxy_cache_lock_age 60s;
+      proxy_cache_lock_timeout 60s;
+      # debug headers for cache
+      add_header X-Cache $upstream_cache_status;
+      add_header X-Cache-Key "$request_uri";
+    }
+}
+
+# gunzip response so it can be filtered for dev/stage (no robots/googlebot)
+server {
+  listen 8082;
+  server_name $SERVER_NAME;
+  gunzip on;
+  location / {
+    proxy_pass http://steemit-sdc:8080;
+    proxy_set_header Accept-Encoding gzip;
+  }
+}
+
+server {
+    listen 8081;
+
+    server_name www.$SERVER_NAME;
+    return 301 https://$SERVER_NAME$request_uri;
+}
