@@ -25,15 +25,15 @@ server {
     # redirect certain routes to the wallet app
 
     location ~* ^/@[0-9a-z]+/transfers {
-        return 301 https://$WALLET_URL$request_uri;
+        return 301 $WALLET_URL$request_uri;
     }
 
     location /market {
-        return 301 https://$WALLET_URL$request_uri;
+        return 301 $WALLET_URL$request_uri;
     }
 
     location /~witnesses {
-        return 301 https://$WALLET_URL$request_uri;
+        return 301 $WALLET_URL$request_uri;
     }
 
     location / {
