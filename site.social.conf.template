@@ -44,7 +44,7 @@ server {
 
     # redirect certain routes to the wallet app
 
-    location ~* ^/@[0-9a-z\-\.]+/transfers {
+    location ~* ^/@[0-9a-z\-\.]+/(transfers|curation-rewards|author-rewards|permissions|password) {
         return 301 $WALLET_URL$request_uri;
     }
 
