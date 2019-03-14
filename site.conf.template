@@ -72,6 +72,11 @@ server {
         return 403;
     }
     
+    location /review/@reveurgam/beware-ists-parcerly-com-package-job-scam-in-murrieta-california {
+        access_log off;
+        return 403;
+    }
+    
     location ~ /@unicef(/|$) {
         access_log off;
         return 403;
