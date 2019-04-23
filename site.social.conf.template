@@ -48,7 +48,7 @@ server {
         return 301 $WALLET_URL$request_uri;
     }
 
-    location /market {
+    location = /market {
         return 301 $WALLET_URL$request_uri;
     }
 
