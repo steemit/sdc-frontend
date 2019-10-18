@@ -16,6 +16,8 @@ ADD site* /etc/nginx/
 
 ADD nginx.conf.template /etc/nginx/nginx.conf.template
 
+ADD htpasswd /etc/nginx/.htpasswd
+
 EXPOSE 8081
 
 CMD /usr/bin/startservices.sh
