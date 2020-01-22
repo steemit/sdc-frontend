@@ -28,6 +28,14 @@ server {
         return 301 $WALLET_URL$request_uri;
     }
 
+    location /change_password {
+        return 301 $WALLET_URL$request_uri;
+    }
+
+    location /recover_account_step_1 {
+        return 301 $WALLET_URL$request_uri;
+    }
+
     location = /market {
         return 301 $WALLET_URL$request_uri;
     }
