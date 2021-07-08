@@ -7,6 +7,9 @@ server {
     server_name $SERVER_NAME;
 
     # ddos blacklist
+    deny 104.243.210.147;
+    deny 146.191.210.5;
+    deny 154.73.128.2;
     deny 122.8.125.184;
     deny 130.206.99.1;
     deny 177.226.255.170;
@@ -16,6 +19,7 @@ server {
     deny 202.62.17.217;
     deny 69.125.96.181;
     deny 79.173.237.10;
+    deny 81.218.117.144;
     deny 83.48.73.254;
     deny 89.35.44.248;
     deny 92.114.178.198;
