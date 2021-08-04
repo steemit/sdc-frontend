@@ -108,6 +108,9 @@ server {
       proxy_cache_lock on;
       proxy_cache_lock_age 5m;
       proxy_cache_lock_timeout 5m;
+      # debug headers for cache
+      add_header X-Cache $upstream_cache_status;
+      add_header X-Cache-Key "$request_uri";
 
       proxy_pass  http://steemit-sdc:8080;
 
