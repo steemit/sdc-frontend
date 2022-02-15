@@ -42,16 +42,21 @@ server {
 
     add_header Strict-Transport-Security "max-age=31557600; includeSubDomains; preload" always;
 
+    location /search {
+        access_log off;
+        return 403;
+    }
+
     location /cryptocurrency/@bitcoinminer25/youhash-cloud-mining-scam-or-legit {
         access_log off;
         return 403;
     }
-    
+
     location /flstudio/@cracked-games/ltxziiz9 {
         access_log off;
         return 403;
     }
-    
+
     location /music/@jneelocamacho/how-to-download-free-fl-studio-mobile {
         access_log off;
         return 403;
@@ -66,22 +71,22 @@ server {
         access_log off;
         return 403;
     }
-    
+
     location /fullmovie/@marvinlox/baaghi-2-hindi-2018-full-movie-in-720p-hd-dvdrip-bluerayrip {
         access_log off;
         return 403;
     }
-    
+
     location /review/@reveurgam/beware-ists-parcerly-com-package-job-scam-in-murrieta-california {
         access_log off;
         return 403;
     }
-    
+
     location ~ /@unicef(/|$) {
         access_log off;
         return 403;
     }
-    
+
     location / {
       limit_req zone=sdc burst=50;
 
