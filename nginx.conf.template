@@ -43,14 +43,14 @@ http {
     limit_req_zone $binary_remote_addr zone=public:100m rate=20r/s;
 
     limit_conn addr 32;
-    limit_req zone=public burst=5;
+    limit_req zone=public burst=5 nodelay;
     limit_conn_log_level error;
     limit_req_log_level error;
 
     client_header_timeout 5s;
     client_body_timeout 20s;
     send_timeout 20s;
-    
+
     proxy_buffer_size 8k;
 
     log_format main '$remote_addr - $remote_user CF-Connecting-IP: $http_cf_connecting_ip [$time_local]  '
