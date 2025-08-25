@@ -20,6 +20,7 @@ server {
     deny 89.35.44.248;
     deny 92.114.178.198;
     deny 99.197.236.213;
+    deny 46.150.50.166;
 
     # ignore csp violations
     location /api/v1/csp_violation {
