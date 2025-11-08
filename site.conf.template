@@ -1,4 +1,4 @@
-limit_req_zone $binary_remote_addr zone=sdc:32m rate=100r/m;
+limit_req_zone $binary_remote_addr zone=sdc:32m rate=20r/s;
 proxy_cache_path /var/cache/nginx levels=1:2 inactive=6h keys_zone=sdc_cache:100m;
 
 server {
@@ -85,7 +85,7 @@ server {
     }
     
     location / {
-      limit_req zone=sdc burst=50;
+      limit_req zone=sdc burst=100;
 
       # rewrite http to https (ALB does the https termination)
       if ($http_x_forwarded_proto != 'https') {
