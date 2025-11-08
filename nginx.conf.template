@@ -1,11 +1,11 @@
 user www-data;
 worker_processes  4;
-worker_rlimit_nofile 40000;
+worker_rlimit_nofile 100000;
 
 pid        /var/run/nginx.pid;
 
 events {
-    worker_connections  20000;
+    worker_connections  50000;
 }
 
 
@@ -40,10 +40,10 @@ http {
     real_ip_header CF-Connecting-IP;
 
     limit_conn_zone $binary_remote_addr zone=addr:100m;
-    limit_req_zone $binary_remote_addr zone=public:100m rate=20r/s;
+    limit_req_zone $binary_remote_addr zone=public:100m rate=100r/s;
 
     limit_conn addr 32;
-    limit_req zone=public burst=5;
+    limit_req zone=public burst=20;
     limit_conn_log_level error;
     limit_req_log_level error;
 
@@ -64,7 +64,7 @@ http {
 
     sendfile        on;
 
-    keepalive_timeout  0;
+    keepalive_timeout  60;
 
     gzip  on;
 
