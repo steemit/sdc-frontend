@@ -27,4 +27,5 @@ cp /etc/nginx/nginx.conf.template /etc/nginx/nginx.conf
 rm /etc/nginx/nginx.conf.template
 
 #bring up nginx
-service nginx start
+# Alpine Linux doesn't have service command, use nginx directly
+nginx -g "daemon off;"

@@ -6,6 +6,11 @@ server {
     listen 8081;
     server_name $SERVER_NAME;
 
+    # Block China IPs
+    if ($block_country = 1) {
+        return 403;
+    }
+
     # proxy traffic for healthcheck to the upstream without https redirect for the ELB to see a 200 on /
     location /.well-known/healthcheck.json {
       limit_req zone=sdc;
@@ -34,7 +39,7 @@ server {
       sub_filter '</head>'
       '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
       <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"></head>';
-      sub_filter_types text/css text/plain text/html;
+      sub_filter_types text/css text/plain;
       sub_filter_once on;
       proxy_set_header Accept-Encoding "";
 
